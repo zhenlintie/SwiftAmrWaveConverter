@@ -17,6 +17,8 @@
 		9C8BE0D11E72AD05001F5749 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8BE0C21E72AD05001F5749 /* libopencore-amrwb.a */; };
 		9C8BE0D21E72AD05001F5749 /* libvo-amrwbenc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8BE0CB1E72AD05001F5749 /* libvo-amrwbenc.a */; };
 		9C8BE0D31E72AD05001F5749 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BE0CE1E72AD05001F5749 /* VoiceRecorder.swift */; };
+		9C8BE0D71E72B4F8001F5749 /* example_amrnb.amr in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BE0D61E72B4F8001F5749 /* example_amrnb.amr */; };
+		9C8BE0D91E72B7B9001F5749 /* example_16k16bit1channel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BE0D81E72B7B9001F5749 /* example_16k16bit1channel.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		9C8BE0CD1E72AD05001F5749 /* enc_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enc_if.h; sourceTree = "<group>"; };
 		9C8BE0CE1E72AD05001F5749 /* VoiceRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		9C8BE0D41E72B195001F5749 /* SwiftBridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftBridgeHeader.h; sourceTree = "<group>"; };
+		9C8BE0D61E72B4F8001F5749 /* example_amrnb.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = example_amrnb.amr; sourceTree = "<group>"; };
+		9C8BE0D81E72B7B9001F5749 /* example_16k16bit1channel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = example_16k16bit1channel.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,7 @@
 		9C8BE0A91E72ACAD001F5749 /* SwiftAmrWaveConverter */ = {
 			isa = PBXGroup;
 			children = (
+				9C8BE0D51E72B4F8001F5749 /* samples */,
 				9C8BE0BC1E72AD05001F5749 /* AmrWaveConverter.swift */,
 				9C8BE0BD1E72AD05001F5749 /* libs */,
 				9C8BE0CE1E72AD05001F5749 /* VoiceRecorder.swift */,
@@ -160,6 +165,15 @@
 			path = "vo-amrwbenc";
 			sourceTree = "<group>";
 		};
+		9C8BE0D51E72B4F8001F5749 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0D81E72B7B9001F5749 /* example_16k16bit1channel.wav */,
+				9C8BE0D61E72B4F8001F5749 /* example_amrnb.amr */,
+			);
+			path = samples;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,8 +235,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C8BE0B51E72ACAD001F5749 /* LaunchScreen.storyboard in Resources */,
+				9C8BE0D71E72B4F8001F5749 /* example_amrnb.amr in Resources */,
 				9C8BE0B21E72ACAD001F5749 /* Assets.xcassets in Resources */,
 				9C8BE0B01E72ACAD001F5749 /* Main.storyboard in Resources */,
+				9C8BE0D91E72B7B9001F5749 /* example_16k16bit1channel.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

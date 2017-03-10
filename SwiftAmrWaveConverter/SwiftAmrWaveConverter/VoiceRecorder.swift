@@ -55,6 +55,8 @@ enum RecordSettingMode {
 
 class VoiceRecorder: NSObject {
     
+    static let shared = VoiceRecorder()
+    
     fileprivate var tempDataPathUrl : URL!
     
     fileprivate var recorder : AVAudioRecorder!
@@ -63,7 +65,7 @@ class VoiceRecorder: NSObject {
     
     var settingMode = RecordSettingMode.st8khz16Bit1c
     
-    override init() {
+    private override init() {
         
         // temporary recorded file path
         let cachesPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
@@ -81,7 +83,6 @@ class VoiceRecorder: NSObject {
         
         recorder = try? AVAudioRecorder(url: tempDataPathUrl, settings: settingMode.settings)
         
-        // 播音相关
         
         super.init()
         

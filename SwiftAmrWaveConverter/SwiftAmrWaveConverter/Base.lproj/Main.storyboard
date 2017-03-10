@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftAmrWaveConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,76 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DcF-mU-m93">
+                                <rect key="frame" x="91" y="47" width="194" height="30"/>
+                                <state key="normal" title="Start record"/>
+                                <connections>
+                                    <action selector="startRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KV6-A1-ezm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylY-XH-Hqy">
+                                <rect key="frame" x="91" y="120" width="194" height="30"/>
+                                <state key="normal" title="Stop record"/>
+                                <connections>
+                                    <action selector="stopRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dze-Pb-Xyp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIs-uo-Iqt">
+                                <rect key="frame" x="91" y="239" width="194" height="30"/>
+                                <state key="normal" title="Convert wave to amr"/>
+                                <connections>
+                                    <action selector="convertWaveToAmr:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DEc-ip-Afw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQs-Wx-Vg8">
+                                <rect key="frame" x="91" y="314" width="194" height="30"/>
+                                <state key="normal" title="Convert amr to wave"/>
+                                <connections>
+                                    <action selector="convertAmrToWave:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HUu-kD-i1O"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTK-vi-1Y5">
+                                <rect key="frame" x="63" y="443" width="247" height="30"/>
+                                <state key="normal" title="Convert amr to wave and Play"/>
+                                <connections>
+                                    <action selector="ConvertAmrToWaveAndPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Gk-vQ-gb2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHg-bt-Co5">
+                                <rect key="frame" x="64" y="508" width="247" height="30"/>
+                                <state key="normal" title="Stop play"/>
+                                <connections>
+                                    <action selector="stopPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F3c-Ty-2v6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ylY-XH-Hqy" firstAttribute="trailing" secondItem="DcF-mU-m93" secondAttribute="trailing" id="0PT-cy-aUv"/>
+                            <constraint firstItem="lQs-Wx-Vg8" firstAttribute="top" secondItem="DIs-uo-Iqt" secondAttribute="bottom" constant="45" id="3Gz-wK-rhQ"/>
+                            <constraint firstItem="lQs-Wx-Vg8" firstAttribute="centerX" secondItem="EHg-bt-Co5" secondAttribute="centerX" id="3Tw-kP-meG"/>
+                            <constraint firstItem="EHg-bt-Co5" firstAttribute="top" secondItem="rTK-vi-1Y5" secondAttribute="bottom" constant="35" id="5tp-YJ-Yzg"/>
+                            <constraint firstItem="DIs-uo-Iqt" firstAttribute="top" secondItem="ylY-XH-Hqy" secondAttribute="bottom" constant="89" id="90o-vM-nVr"/>
+                            <constraint firstItem="EHg-bt-Co5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="48" id="AH1-Wc-e0i"/>
+                            <constraint firstItem="rTK-vi-1Y5" firstAttribute="top" secondItem="lQs-Wx-Vg8" secondAttribute="bottom" constant="99" id="FP8-aO-FDb"/>
+                            <constraint firstItem="DIs-uo-Iqt" firstAttribute="trailing" secondItem="lQs-Wx-Vg8" secondAttribute="trailing" id="Gt2-pZ-hpo"/>
+                            <constraint firstItem="DcF-mU-m93" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="75" id="JK6-qk-0JF"/>
+                            <constraint firstItem="rTK-vi-1Y5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="47" id="Mle-Ut-yA3"/>
+                            <constraint firstItem="ylY-XH-Hqy" firstAttribute="top" secondItem="DcF-mU-m93" secondAttribute="bottom" constant="43" id="YPW-0t-Tyl"/>
+                            <constraint firstItem="ylY-XH-Hqy" firstAttribute="trailing" secondItem="DIs-uo-Iqt" secondAttribute="trailing" id="ZOl-7n-Ee4"/>
+                            <constraint firstItem="DcF-mU-m93" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="27" id="bbg-Z0-uDY"/>
+                            <constraint firstItem="DcF-mU-m93" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ef4-Y1-z9c"/>
+                            <constraint firstItem="ylY-XH-Hqy" firstAttribute="leading" secondItem="DIs-uo-Iqt" secondAttribute="leading" id="lcv-cf-MtJ"/>
+                            <constraint firstItem="ylY-XH-Hqy" firstAttribute="leading" secondItem="DcF-mU-m93" secondAttribute="leading" id="ney-zU-DKa"/>
+                            <constraint firstItem="DIs-uo-Iqt" firstAttribute="leading" secondItem="lQs-Wx-Vg8" secondAttribute="leading" id="owD-aw-q38"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rTK-vi-1Y5" secondAttribute="trailing" constant="49" id="xbl-M3-RR2"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="63.200000000000003" y="154.27286356821591"/>
         </scene>
     </scenes>
 </document>

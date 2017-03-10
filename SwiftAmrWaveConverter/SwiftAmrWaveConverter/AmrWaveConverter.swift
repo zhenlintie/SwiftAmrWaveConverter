@@ -132,27 +132,22 @@ fileprivate func convertWaveToAmr(isWB : Bool, data : Data) -> Data? {
     
     var amrData = Data()
     
+    var offset = rlt.dataOffset
+    let dtx : Int32 = 0
+    var mode : Int32
+    let frameSize = Int(Float(UInt32(rlt.ckFmt.numChannels * rlt.ckFmt.bitsPerSample/8) * rlt.ckFmt.sampleRate) * 0.02)
+    var state : UnsafeMutableRawPointer
+    
     if isWB {
         // Add amr-wb magic number.
         amrData.append("#!AMR-WB\n".data(using: .ascii)!)
+        mode = 8 // 23.85kbps
+        state = E_IF_init()
     }
     else {
         // Add amr-nb magic number.
         amrData.append("#!AMR\n".data(using: .ascii)!)
-    }
-    
-    let dtx : Int32 = 0
-    let mode : Int32 = 8 // 23.85kbps
-    var offset = rlt.dataOffset
-    
-    let frameSize = Int(Float(UInt32(rlt.ckFmt.numChannels * rlt.ckFmt.bitsPerSample/8) * rlt.ckFmt.sampleRate) * 0.02)
-    
-    var state : UnsafeMutableRawPointer
-    
-    if isWB {
-        state = E_IF_init()
-    }
-    else {
+        mode = 7 // 12.2kbps
         state = Encoder_Interface_init(dtx)
     }
     
@@ -182,13 +177,14 @@ fileprivate func convertWaveToAmr(isWB : Bool, data : Data) -> Data? {
     } while true
     
     if isWB {
-        Encoder_Interface_exit(state)
+        E_IF_exit(state)
     }
     else {
-        E_IF_exit(state)
+        Encoder_Interface_exit(state)
     }
     
     print("Encode amr-\(isWB ? "wb" : "nb") data succeed!")
+    print("wav size : \(data.count)\namr size : \(amrData.count)\n")
     
     return amrData
 }
@@ -231,7 +227,7 @@ fileprivate func waveHeaderData(sampleRate : UInt32, dataSize : UInt32) -> Data 
 }
 
 /// Convert amr data to wave
-func convertAmrToWave(isWB : Bool, data : Data) -> Data? {
+fileprivate func convertAmrToWave(isWB : Bool, data : Data) -> Data? {
     let magicNumberCount = isWB ? 9 : 6
     let magicNumber = isWB ? "#!AMR-WB\n" : "#!AMR\n"
     guard data.count > magicNumberCount, data.starts(with: magicNumber.data(using: .ascii)!) else {
@@ -326,6 +322,7 @@ func convertAmrToWave(isWB : Bool, data : Data) -> Data? {
     wavData.insert(contentsOf: waveHeaderData(sampleRate : isWB ? 16000 : 8000, dataSize: dataSize), at: 0)
     
     print("Decode amr-\(isWB ? "wb" : "nb") data succeed!")
+    print("amr size : \(data.count)\nwave size : \(wavData.count)\n")
     
     return wavData
 }
