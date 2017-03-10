@@ -12,6 +12,11 @@
 		9C8BE0B01E72ACAD001F5749 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BE0AE1E72ACAD001F5749 /* Main.storyboard */; };
 		9C8BE0B21E72ACAD001F5749 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BE0B11E72ACAD001F5749 /* Assets.xcassets */; };
 		9C8BE0B51E72ACAD001F5749 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BE0B31E72ACAD001F5749 /* LaunchScreen.storyboard */; };
+		9C8BE0CF1E72AD05001F5749 /* AmrWaveConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BE0BC1E72AD05001F5749 /* AmrWaveConverter.swift */; };
+		9C8BE0D01E72AD05001F5749 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8BE0C11E72AD05001F5749 /* libopencore-amrnb.a */; };
+		9C8BE0D11E72AD05001F5749 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8BE0C21E72AD05001F5749 /* libopencore-amrwb.a */; };
+		9C8BE0D21E72AD05001F5749 /* libvo-amrwbenc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8BE0CB1E72AD05001F5749 /* libvo-amrwbenc.a */; };
+		9C8BE0D31E72AD05001F5749 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BE0CE1E72AD05001F5749 /* VoiceRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,18 @@
 		9C8BE0B11E72ACAD001F5749 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C8BE0B41E72ACAD001F5749 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C8BE0B61E72ACAD001F5749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C8BE0BC1E72AD05001F5749 /* AmrWaveConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmrWaveConverter.swift; sourceTree = "<group>"; };
+		9C8BE0BE1E72AD05001F5749 /* AmrCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmrCodec.h; sourceTree = "<group>"; };
+		9C8BE0C11E72AD05001F5749 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		9C8BE0C21E72AD05001F5749 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		9C8BE0C41E72AD05001F5749 /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		9C8BE0C51E72AD05001F5749 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		9C8BE0C71E72AD05001F5749 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
+		9C8BE0C81E72AD05001F5749 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
+		9C8BE0CB1E72AD05001F5749 /* libvo-amrwbenc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libvo-amrwbenc.a"; sourceTree = "<group>"; };
+		9C8BE0CD1E72AD05001F5749 /* enc_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enc_if.h; sourceTree = "<group>"; };
+		9C8BE0CE1E72AD05001F5749 /* VoiceRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
+		9C8BE0D41E72B195001F5749 /* SwiftBridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftBridgeHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +46,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C8BE0D11E72AD05001F5749 /* libopencore-amrwb.a in Frameworks */,
+				9C8BE0D21E72AD05001F5749 /* libvo-amrwbenc.a in Frameworks */,
+				9C8BE0D01E72AD05001F5749 /* libopencore-amrnb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +58,7 @@
 		9C8BE09E1E72ACAD001F5749 = {
 			isa = PBXGroup;
 			children = (
+				9C8BE0D41E72B195001F5749 /* SwiftBridgeHeader.h */,
 				9C8BE0A91E72ACAD001F5749 /* SwiftAmrWaveConverter */,
 				9C8BE0A81E72ACAD001F5749 /* Products */,
 			);
@@ -54,6 +75,9 @@
 		9C8BE0A91E72ACAD001F5749 /* SwiftAmrWaveConverter */ = {
 			isa = PBXGroup;
 			children = (
+				9C8BE0BC1E72AD05001F5749 /* AmrWaveConverter.swift */,
+				9C8BE0BD1E72AD05001F5749 /* libs */,
+				9C8BE0CE1E72AD05001F5749 /* VoiceRecorder.swift */,
 				9C8BE0AA1E72ACAD001F5749 /* AppDelegate.swift */,
 				9C8BE0AC1E72ACAD001F5749 /* ViewController.swift */,
 				9C8BE0AE1E72ACAD001F5749 /* Main.storyboard */,
@@ -62,6 +86,78 @@
 				9C8BE0B61E72ACAD001F5749 /* Info.plist */,
 			);
 			path = SwiftAmrWaveConverter;
+			sourceTree = "<group>";
+		};
+		9C8BE0BD1E72AD05001F5749 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0BE1E72AD05001F5749 /* AmrCodec.h */,
+				9C8BE0BF1E72AD05001F5749 /* opencore-amr */,
+				9C8BE0C91E72AD05001F5749 /* vo-amrwbenc */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		9C8BE0BF1E72AD05001F5749 /* opencore-amr */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0C01E72AD05001F5749 /* lib */,
+				9C8BE0C31E72AD05001F5749 /* opencore-amrnb */,
+				9C8BE0C61E72AD05001F5749 /* opencore-amrwb */,
+			);
+			path = "opencore-amr";
+			sourceTree = "<group>";
+		};
+		9C8BE0C01E72AD05001F5749 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0C11E72AD05001F5749 /* libopencore-amrnb.a */,
+				9C8BE0C21E72AD05001F5749 /* libopencore-amrwb.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		9C8BE0C31E72AD05001F5749 /* opencore-amrnb */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0C41E72AD05001F5749 /* interf_dec.h */,
+				9C8BE0C51E72AD05001F5749 /* interf_enc.h */,
+			);
+			path = "opencore-amrnb";
+			sourceTree = "<group>";
+		};
+		9C8BE0C61E72AD05001F5749 /* opencore-amrwb */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0C71E72AD05001F5749 /* dec_if.h */,
+				9C8BE0C81E72AD05001F5749 /* if_rom.h */,
+			);
+			path = "opencore-amrwb";
+			sourceTree = "<group>";
+		};
+		9C8BE0C91E72AD05001F5749 /* vo-amrwbenc */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0CA1E72AD05001F5749 /* lib */,
+				9C8BE0CC1E72AD05001F5749 /* vo-amrwbenc */,
+			);
+			path = "vo-amrwbenc";
+			sourceTree = "<group>";
+		};
+		9C8BE0CA1E72AD05001F5749 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0CB1E72AD05001F5749 /* libvo-amrwbenc.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		9C8BE0CC1E72AD05001F5749 /* vo-amrwbenc */ = {
+			isa = PBXGroup;
+			children = (
+				9C8BE0CD1E72AD05001F5749 /* enc_if.h */,
+			);
+			path = "vo-amrwbenc";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +235,8 @@
 			files = (
 				9C8BE0AD1E72ACAD001F5749 /* ViewController.swift in Sources */,
 				9C8BE0AB1E72ACAD001F5749 /* AppDelegate.swift in Sources */,
+				9C8BE0D31E72AD05001F5749 /* VoiceRecorder.swift in Sources */,
+				9C8BE0CF1E72AD05001F5749 /* AmrWaveConverter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,11 +302,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = SwiftBridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -247,9 +346,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = SwiftBridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -261,7 +361,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 279CT777Q5;
 				INFOPLIST_FILE = SwiftAmrWaveConverter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SwiftAmrWaveConverter/libs/opencore-amr/lib",
+					"$(PROJECT_DIR)/SwiftAmrWaveConverter/libs/vo-amrwbenc/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.steven.SwiftAmrWaveConverter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -274,7 +380,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 279CT777Q5;
 				INFOPLIST_FILE = SwiftAmrWaveConverter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SwiftAmrWaveConverter/libs/opencore-amr/lib",
+					"$(PROJECT_DIR)/SwiftAmrWaveConverter/libs/vo-amrwbenc/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.steven.SwiftAmrWaveConverter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
