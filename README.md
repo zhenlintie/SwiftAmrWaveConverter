@@ -26,5 +26,5 @@ func convertAmrNBToWave(data : Data) -> Data?
 func convertAmrWBToWave(data : Data) -> Data?
 ```
 
-## 协议  
+## 许可 
 此项目采用 MIT 协议
