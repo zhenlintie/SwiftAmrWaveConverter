@@ -21,7 +21,7 @@ public func convert16khzWaveToAmr(waveData data : Data) -> Data?
 // wave 采用 8k Hz，单声道，16 位
 func convertAmrNBToWave(data : Data) -> Data?
 
-// 将 amr-nb 格式的数据（单声道），转为 wave 格式
+// 将 amr-wb 格式的数据（单声道），转为 wave 格式
 // wave 采用 16k Hz，单声道，16 位
 func convertAmrWBToWave(data : Data) -> Data?
 ```
