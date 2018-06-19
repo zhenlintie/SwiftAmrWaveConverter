@@ -86,18 +86,35 @@ func convertAmrWBToWave(data : Data) -> Data? {
 /// Read wave data chunk structure, if the data format is unknown, return nil.
 public func readWaveStructure(data : Data) -> (ckFmt : ChunkFmt, ckData : ChunkHeader, dataOffset : Int)? {
     
-    guard let waveHeader = data.readWaveHeader(), let fmt = data.readChunkFmt() else {
+    guard let waveHeader = data.readWaveHeader(),
+              waveHeader.header.ckID.description == "RIFF",
+              waveHeader.ckFmt.description == "WAVE" else {
         return nil
     }
     
-    guard waveHeader.header.ckID.description == "RIFF",
-        waveHeader.ckFmt.description == "WAVE",
-        fmt.header.ckID.description == "fmt " else {
+    var readOffset = 12
+    var readFmt = false
+    var fmt : ChunkFmt!
+    
+    // Ignore other sub chunks, only need fmt.
+    while !readFmt {
+        guard let header = data.readChunkHeader(offset: readOffset) else {
+            // invalid header
             return nil
+        }
+        if header.ckID.description == "fmt " {
+            guard let tempFmt = data.readChunkFmt(offset: readOffset) else {
+                return nil
+            }
+            fmt = tempFmt
+            readFmt = true
+        }
+        readOffset += 8 + Int(header.ckSize)
     }
     
+    
     var dataChunkHeader : ChunkHeader!
-    var readDataOffset = 20 + Int(fmt.header.ckSize)
+    var readDataOffset = readOffset
     
     repeat {
         if let chunkHeader = data.readChunkHeader(offset: readDataOffset) {
@@ -344,11 +361,11 @@ fileprivate extension Data {
         return readData(range: Range<Data.Index>(0..<12), type: WaveHeader.self)
     }
     
-    func readChunkFmt() -> ChunkFmt? {
-        guard self.count > 36 else {
+    func readChunkFmt(offset : Int) -> ChunkFmt? {
+        guard self.count > offset + 24 else {
             return nil
         }
-        return readData(range: Range<Data.Index>(12..<35), type: ChunkFmt.self)
+        return readData(range: Range<Data.Index>(offset..<offset + 24), type: ChunkFmt.self)
     }
     
     func readChunkHeader(offset : Int) -> ChunkHeader? {
@@ -378,6 +395,7 @@ fileprivate extension Data {
             // 1-channel 16-bit
         else if numChannels == 1, bitsPerSample == 16 {
             let bytes = readBufferData(range: Range<Data.Index>(offset..<(offset+frameSize)), type: Int16.self, capacity: frameSize/2)
+            
             for (i, byte) in bytes.enumerated() {
                 speech[i] = Int16(byte)
             }
@@ -408,14 +426,29 @@ fileprivate extension Data {
         return speech
     }
     
-    func readBufferData<Result>(range : Range<Data.Index>, type : Result.Type, capacity count: Int) -> UnsafeMutableBufferPointer<Result> {
-        var subd = subdata(in: range)
-        return subd.withUnsafeMutableBytes { (bytes : UnsafeMutablePointer<UInt8>) -> UnsafeMutableBufferPointer<Result> in
-            return bytes.withMemoryRebound(to: Result.self, capacity: count, { (pointer : UnsafeMutablePointer<Result>) -> UnsafeMutableBufferPointer<Result> in
-                return UnsafeMutableBufferPointer<Result>(start: pointer, count: count)
+    func readBufferData<Result>(range : Range<Data.Index>, type : Result.Type, capacity count: Int) -> [Result] {
+        let subd = subdata(in: range)
+        let buffer = subd.withUnsafeBytes { (bytes : UnsafePointer<UInt8>) -> UnsafeBufferPointer<Result> in
+            return bytes.withMemoryRebound(to: Result.self, capacity: count, { (pointer : UnsafePointer<Result>) -> UnsafeBufferPointer<Result> in
+                return UnsafeBufferPointer<Result>(start: pointer, count: count)
             })
         }
+        var bytes = [Result]()
+        for (_, b) in buffer.enumerated() {
+            bytes.append(b)
+        }
+        return bytes
     }
+    
+//    func readBufferData<Result>(range : Range<Data.Index>, type : Result.Type, capacity count: Int) -> UnsafeMutableBufferPointer<Result> {
+//        var subd = subdata(in: range)
+//        print(subd)
+//        return subd.withUnsafeMutableBytes { (bytes : UnsafeMutablePointer<UInt8>) -> UnsafeMutableBufferPointer<Result> in
+//            return bytes.withMemoryRebound(to: Result.self, capacity: count, { (pointer : UnsafeMutablePointer<Result>) -> UnsafeMutableBufferPointer<Result> in
+//                return UnsafeMutableBufferPointer<Result>(start: pointer, count: count)
+//            })
+//        }
+//    }
     
     func readData<Result>(range : Range<Data.Index>, type : Result.Type) -> Result {
         return self.subdata(in: range).withUnsafeBytes { (bytes : UnsafePointer<Int8>) -> Result in

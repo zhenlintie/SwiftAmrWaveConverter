@@ -43,13 +43,14 @@ enum RecordSettingMode {
     }
     
     private func generateSettings(sampleRate : UInt, bitDepth : UInt, channelsNum : UInt) -> [String : AnyObject] {
-        return [AVFormatIDKey: NSNumber(value: kAudioFormatLinearPCM as UInt32),
+        return [AVFormatIDKey: NSNumber(value: kAudioFormatLinearPCM),
                 AVSampleRateKey: sampleRate as AnyObject,
                 AVNumberOfChannelsKey: channelsNum as AnyObject,
                 AVLinearPCMBitDepthKey: bitDepth as AnyObject,
-                AVLinearPCMIsNonInterleaved: false as AnyObject,
-                AVLinearPCMIsFloatKey: false as AnyObject,
-                AVLinearPCMIsBigEndianKey: false as AnyObject]
+//                AVLinearPCMIsNonInterleaved: false as AnyObject,
+//                AVLinearPCMIsFloatKey: false as AnyObject,
+//                AVLinearPCMIsBigEndianKey: false as AnyObject
+        ]
     }
 }
 
@@ -80,6 +81,8 @@ class VoiceRecorder: NSObject {
         }
         
         tempDataPathUrl = URL(fileURLWithPath: tempPath)
+        
+        print(settingMode.settings)
         
         recorder = try? AVAudioRecorder(url: tempDataPathUrl, settings: settingMode.settings)
         
